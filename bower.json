@@ -1,0 +1,12 @@
+{
+  "name": "styleguide",
+  "version": "0.0.1",
+  "authors": [
+    "Kyle Kemp <kempk@versifit.com>"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.4",
+    "font-awesome": "~4.3.0",
+    "anchor-js": "~1.1.1"
+  }
+}

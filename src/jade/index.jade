@@ -1,0 +1,510 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="utf-8")
+        title Versifit Style Guide
+        link(href="css/lib.css", rel="stylesheet")
+        link(href="css/main.min.css", rel="stylesheet")
+    body(data-spy="scroll", data-target="#navbar")
+        header.navbar.navbar-default.navbar-static-top#top
+            .container
+                .navbar-header
+                    a.navbar-brand Versifit Style Guide
+
+        .container
+            .row
+                .col-md-9.docs-container
+                    section.docs-section
+                        h1.page-header Basics
+                        p
+                            | This is an outline for best practices to make an application fit in well with other applications consistently in the dashboard.
+                            |  Consider this the go-to resource for any examples or guidelines.
+                            |  If an application does not reflect something shown in these guidelines, it is likely outdated and should be updated to match.
+
+                        h2 Padding/Margins
+                        p
+                            | In most cases, paddings and margins should be set to 15px (in any and all directions).
+                            |  This is because Bootstrap defaults to 15px.
+                            |  Deviation from this rule should be rare.
+
+                        h2 Blank Slates
+                        p A "blank slate" is when you have an empty space, but no actions or messages for the user to let them know how to proceed.
+                        p For example, the following is a bad example of how to handle an empty table.
+
+                        .example.bad-example
+                            table.table.table-striped
+                                thead
+                                    tr
+                                        th Header 1
+                                        th Header 2
+                                        th Header 3
+                                        th.text-right
+                                            btn.btn.btn-primary
+                                                span.fa.fa-plus
+                                                span &nbsp;Add New
+
+                        p Prefer to tell the user something, like so.
+
+                        .example.good-example
+                            table.table.table-striped
+                                thead
+                                    tr
+                                        th Header 1
+                                        th Header 2
+                                        th Header 3
+                                        th.text-right
+                                            btn.btn.btn-primary
+                                                span.fa.fa-plus
+                                                span &nbsp;Add New
+                                tbody
+                                    tr
+                                        td.text-center(colspan="4")
+                                            div You currently have no data. Click <a href>here</a> to add some.
+
+                        p
+                            | This applies to more than just tables (wells, drag & drop zones, etc), but the general idea is to let the user always have something actionable,
+                            |  so they don't assume empty space = bad space. In the example above, the "here" in "click here" and the "Add New" button do the same thing.
+
+                    section.docs-section
+                        h1.page-header Buttons
+                        p Buttons are pretty important, given that they're everywhere. Using them properly is also important, so as not to confuse users.
+
+                        h2 Naming
+                        p
+                            | Button naming is good to keep consistent, so a user can associate button text with what the action behind the button is.
+                            | Below is a listing of common actions and the labels associated with them.
+
+                        table.table.table-striped
+                            thead
+                                tr
+                                    th Label
+                                    th Action
+                            tbody
+                                tr
+                                    td Submit
+                                    td Insert
+                                tr
+                                    td Update
+                                    td Update
+                                tr
+                                    td Remove
+                                    td Delete
+
+                        h2 Colors
+                        p
+                            | Coloring buttons consistently and effectively can help a user navigate an application much more easily.
+                            |  Only the built-in Bootstrap colors should be used for this task, since those can be changed with a variable.
+                            |  Using custom colors will only lead to inconsistency down the line.
+                            |  Generally, colors should go similar to the table that follows.
+
+                        table.table.table-striped
+                            thead
+                                tr
+                                    th Label
+                                    th Color
+                                    th Example
+                            tbody
+                                tr
+                                    td Submit
+                                    td
+                                        code .btn-primary
+                                    td
+                                        btn.btn.btn-primary Submit
+                                tr
+                                    td Update
+                                    td
+                                        code .btn-info
+                                    td
+                                        btn.btn.btn-info Update
+                                tr
+                                    td Remove
+                                    td
+                                        code .btn-danger
+                                    td
+                                        btn.btn.btn-danger Remove
+                                tr
+                                    td Close / Cancel
+                                    td
+                                        code .btn-default
+                                    td
+                                        btn.btn.btn-default Close
+                                        btn.btn.btn-default Cancel
+
+                        p
+                            | There is no mention of <code>.btn-success</code> because there aren't really any situations in which it is appropriate.
+                            |  Any unmentioned action is likely a <code>.btn-info</code> action.
+
+                        h2 Functionality
+                        p
+                            | <b>Every</b> button that has destructive or unrecoverable repercussions (delete, remove, etc) should have a confirmation dialog attached to them.
+                            |  If a button has to make an HTTP request, or has to wait to get a response before the action is completed, it should disable itself to prevent duplicate submissions.
+                            |  Where applicable, it should also block other actions on the page until the request completes.
+
+                        .example.bad-example
+                            button.btn.btn-primary Submit Data
+
+                        .example.good-example
+                            button.btn.btn-primary(disabled)
+                                span.fa.fa-spin.fa-spinner
+                                span &nbsp;Submit Data
+
+                        h2 Groups
+                        p
+                            | Button groups are an often-used component (for example, an on/off switch, or a multi-select with <5 elements).
+                            |  As such, it's pretty important to color them appropriately.
+                            |  Even though I personally disagree with it, supposedly, the default Bootstrap coloration is too difficult to differentiate selected and unselected buttons.
+                            |  As a result, inactive choices should be greyed out.
+                            |  The following is a bad example.
+
+                        .example.bad-example
+                            .btn-group(data-toggle="buttons")
+                                label.btn.btn-primary
+                                    input(type="checkbox")
+                                    span Number 1
+                                label.btn.btn-primary.active
+                                    input(type="checkbox", checked)
+                                    span Number 2
+                                label.btn.btn-primary
+                                    input(type="checkbox")
+                                    span Number 3
+
+                        p The following are good examples.
+
+                        .example.good-example.correct-button-colors
+                            .btn-group(data-toggle="buttons")
+                                label.btn.btn-primary
+                                    input(type="checkbox")
+                                    span Number 1
+                                label.btn.btn-primary.active
+                                    input(type="checkbox", checked)
+                                    span Number 2
+                                label.btn.btn-primary
+                                    input(type="checkbox")
+                                    span Number 3
+                            .btn-group(data-toggle="buttons")
+                                label.btn.btn-success.active
+                                    input(type="radio", checked)
+                                    span On
+                                label.btn.btn-danger
+                                    input(type="radio")
+                                    span Off
+
+                    section.docs-section
+                        h1.page-header Tables
+                        p Tables are everywhere and should be handled consistently everywhere.
+
+                        h2 Button Placement
+                        p
+                            | Buttons should always be placed in the rightmost column of tables. They should also always be aligned to the right.
+                            |  Buttons inside of the table should not have text in them, due to wrapping / space concerns.
+                            |  If the table requires a "new" action, that should be placed in the header, alongside the other headers, so as not to be off in its own space.
+
+                        .example.bad-example
+                            table.table.table-striped
+                                thead
+                                    tr
+                                        th Header 1
+                                        th Header 2
+                                        th Header 3
+                                        th
+                                            btn.btn.btn-primary
+                                                span.fa.fa-plus
+                                                span &nbsp;Add New
+                                tbody
+                                    tr
+                                        td Data 1
+                                        td Data 2
+                                        td Data 3
+                                        td
+                                            btn.btn.btn-info
+                                                span.fa.fa-pencil-square-o
+                                                span &nbsp; Edit
+                                            btn.btn.btn-danger
+                                                span.fa.fa-trash
+                                                span &nbsp; Remove
+
+                        .example.good-example
+                            table.table.table-striped
+                                thead
+                                    tr
+                                        th Header 1
+                                        th Header 2
+                                        th Header 3
+                                        th.text-right
+                                            btn.btn.btn-primary
+                                                span.fa.fa-plus
+                                                span &nbsp;Add New
+                                tbody
+                                    tr
+                                        td Data 1
+                                        td Data 2
+                                        td Data 3
+                                        td.text-right
+                                            btn.btn.btn-info
+                                                span.fa.fa-pencil-square-o
+                                            btn.btn.btn-danger
+                                                span.fa.fa-trash
+
+                        h2 Button Ordering
+                        p
+                            | Buttons are typically ordered from left to right, with the most destructive actions being farther away (ie, on the right).
+                            |  This is different from modals, where the more primary actions are on the right!
+                            |  The reason for this is because users will typically move left to right in a table, but most confirmation actions in a modal are on the bottom right.
+
+                        .example.bad-example
+                            table.table.table-striped
+                                thead
+                                    tr
+                                        th Header 1
+                                        th Header 2
+                                        th Header 3
+                                        th.text-right
+                                            btn.btn.btn-primary
+                                                span.fa.fa-plus
+                                                span &nbsp;Add New
+                                tbody
+                                    tr
+                                        td Data 1
+                                        td Data 2
+                                        td Data 3
+                                        td.text-right
+                                            btn.btn.btn-danger
+                                                span.fa.fa-trash
+                                            btn.btn.btn-info
+                                                span.fa.fa-question-circle
+                                            btn.btn.btn-info
+                                                span.fa.fa-pencil-square-o
+
+                        .example.good-example
+                            table.table.table-striped
+                                thead
+                                    tr
+                                        th Header 1
+                                        th Header 2
+                                        th Header 3
+                                        th.text-right
+                                            btn.btn.btn-primary
+                                                span.fa.fa-plus
+                                                span &nbsp;Add New
+                                tbody
+                                    tr
+                                        td Data 1
+                                        td Data 2
+                                        td Data 3
+                                        td.text-right
+                                            btn.btn.btn-info
+                                                span.fa.fa-question-circle
+                                            btn.btn.btn-info
+                                                span.fa.fa-pencil-square-o
+                                            btn.btn.btn-danger
+                                                span.fa.fa-trash
+
+                        h2 Column Sizes
+                        p
+                            | The number of columns should be limited to 4 data columns (not counting buttons). Anything extra should be shown in an "info" popup.
+                            | Normally the information popup doubles as an editing interface for convenience.
+
+                        .example.bad-example
+                            table.table.table-striped
+                                thead
+                                    tr
+                                        th Header 1
+                                        th Header 2
+                                        th Header 3
+                                        th Header 4
+                                        th Header 5
+                                        th Header 6
+                                        th Header 7
+                                        th.text-right
+                                            btn.btn.btn-primary
+                                                span.fa.fa-plus
+                                                span &nbsp;Add New
+                                tbody
+                                    tr
+                                        td Data 1
+                                        td Data 2
+                                        td Data 3
+                                        td Data 4
+                                        td Data 5
+                                        td Data 6
+                                        td Data 7
+                                        td.text-right
+                                            btn.btn.btn-info
+                                                span.fa.fa-pencil-square-o
+                                            btn.btn.btn-danger
+                                                span.fa.fa-trash
+
+                        .example.good-example
+                            table.table.table-striped
+                                thead
+                                    tr
+                                        th Header 1
+                                        th Header 2
+                                        th Header 3
+                                        th.text-right
+                                            btn.btn.btn-primary
+                                                span.fa.fa-plus
+                                                span &nbsp;Add New
+                                tbody
+                                    tr
+                                        td Data 1
+                                        td Data 2
+                                        td Data 3
+                                        td.text-right
+                                            btn.btn.btn-info
+                                                span.fa.fa-pencil-square-o
+                                            btn.btn.btn-danger
+                                                span.fa.fa-trash
+
+                    section.docs-section
+                        h1.page-header Forms
+                        p Forms are everywhere and should be made consistent.
+
+                        h2 Style
+                        p
+                            | All inputs should adhere to a few basic style rules. Primarily, they should always have placeholders.
+                            |  However, there are some layout issues to be addressed too. Inputs should always have a label to their left,
+                            |  and they should be laid out such that the label is in a <code>.col-md-3</code>, with the input in a <code>.col-md-9</code>.
+
+                        .example.bad-example
+                            label Input Data
+                            input.form-control(type="text")
+
+                        .example.good-example
+                            .row
+                                .col-md-3.text-right
+                                    label Input Data
+                                .col-md-9
+                                    input.form-control(type="text", placeholder="Input data here...")
+
+                        h2 Validation
+                        p When validating inputs, required fields should be encompassed, when empty or invalid, with a red border. Bootstrap has <code>.has-error</code> for this.
+
+                    section.docs-section
+                        h1.page-header Modals
+                        p Modals are everywhere and should be made consistent.
+
+                        h2 Layout
+                        p
+                            | Modals should always have multiple close buttons (one in the top right, one on the bottom) to allow users to close however they feel inclined.
+                            |  Buttons should have the most primary action on the right (ie, confirm, update, etc), with the close button always being on the left.
+                            |  Modals should also always have a title! No title means no context for the users.
+
+                        .example.bad-example.modal-example
+                            .modal
+                                .modal-dialog
+                                    .modal-content
+                                        .modal-header
+                                        .modal-body
+                                            div Hey, this is a modal!
+                                        .modal-footer
+                                            button.btn.btn-primary Update
+                                            button.btn.btn-primary Close
+
+                        .example.good-example.modal-example
+                            .modal
+                                .modal-dialog
+                                    .modal-content
+                                        .modal-header
+                                            button.close.pull-right &times;
+                                            h4.modal-title Modal Title
+                                        .modal-body
+                                            div Hey, this is a modal!
+                                        .modal-footer
+                                            button.btn.btn-default
+                                                span.fa.fa-close
+                                                span &nbsp;Close
+                                            button.btn.btn-primary
+                                                span.fa.fa-pencil-square-o
+                                                span &nbsp;Update
+
+                    section.docs-section
+                        h1.page-header Icons
+                        p Icons are everywhere and definitely need to be made consistent.
+
+                        h2 Clickables
+                        p
+                            | Anything that is supposed to be clickable should have have <code>cursor: pointer;</code> set.
+                            |  Bootstrap does this with many things by default, but there are times when some considerations still have to be made.
+
+                        .example.bad-example
+                            button.btn.btn-default.no-cursor Can you click me?
+                            button.btn.btn-link.no-cursor Or me?
+
+                        .example.good-example
+                            button.btn.btn-default Can you click me?
+                            button.btn.btn-link Or me?
+
+                        h2 v-icon
+                        p
+                            | <code>v-icon</code> is a directive that simplifies icon usage and consistency across every application.
+                            |  Currently, there are plenty of actions defined <a href="https://git.versifit.com/bower-projects/base-resources/blob/master/src/js/icondef.js">here</a>.
+                            |  Sample usage is below.
+
+                        pre &lt;v-icon fw="true" icon="actions.remove"></v-icon>
+
+                        p This will expand to the following:
+
+                        pre &lt;i class="fa fa-trash fa-fw"></i>
+
+                        p
+                            | To understand the expansion, note that <code>actions</code> is a key in the root object, and it has a property <code>remove</code> that is set to <code>'fa fa-trash'</code>.
+                            |  You can specify the <code>fw</code> option to get a full-width icon. Doing so is recommended for situations where buttons (or icons) should be the same width.
+
+                        p
+                            | It is important (and easier!) to use these icons for common actions such as adding, removal, editing, and anything defined in the list above.
+                            |  This exists simply to provide a simple mechanism for changing icons en masse later. Obviously, not all icons will be defined here. In those cases,
+                            |  using discretion is a wise choice for picking icons.
+
+                .col-md-3
+                    nav.docs-sidebar#navbar(data-spy="affix", data-offset-top="60")
+                        ul.nav.docs-sidenav
+                            li
+                                a(href="#basics") Basics
+                                ul.nav
+                                    li
+                                        a(href="#paddingmargins") Padding/Margins
+                                    li
+                                        a(href="#blank-slates") Blank Slates
+                            li
+                                a(href="#buttons") Buttons
+                                ul.nav
+                                    li
+                                        a(href="#naming") Naming
+                                    li
+                                        a(href="#colors") Colors
+                                    li
+                                        a(href="#functionality") Functionality
+                                    li
+                                        a(href="#groups") Groups
+                            li
+                                a(href="#tables") Tables
+                                ul.nav
+                                    li
+                                        a(href="#button-placement") Button Placement
+                                    li
+                                        a(href="#button-ordering") Button Ordering
+                                    li
+                                        a(href="#column-sizes") Column Sizes
+                            li
+                                a(href="#forms") Forms
+                                ul.nav
+                                    li
+                                        a(href="#style") Style
+                                    li
+                                        a(href="#validation") Validation
+                            li
+                                a(href="#modals") Modals
+                                ul.nav
+                                    li
+                                        a(href="#layout") Layout
+                            li
+                                a(href="#icons") Icons
+                                ul.nav
+                                    li
+                                        a(href="#clickables") Clickables
+                                    li
+                                        a(href="#v-icon") v-icon
+
+        script(src="js/lib.js")
+        script(src="js/main.min.js")

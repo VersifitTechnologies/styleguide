@@ -1,0 +1,73 @@
+{
+  "name": "styleguide",
+  "description": "A styleguide",
+  "readme": "README.md",
+  "version": "0.0.0",
+  "authors": [
+    "Kyle Kemp <kempk@versifit.com>"
+  ],
+  "devDependencies": {
+    "babelify": "^6.0.1",
+    "bower": "*",
+    "browserify": "*",
+    "del": "*",
+    "errorify": "^0.2.0",
+    "gulp": "*",
+    "gulp-concat": "*",
+    "gulp-connect": "*",
+    "gulp-download": "*",
+    "gulp-if": "*",
+    "gulp-jade": "^1.0.0",
+    "gulp-jshint": "*",
+    "gulp-less": "^3.0.2",
+    "gulp-minify-css": "*",
+    "gulp-minify-html": "*",
+    "gulp-processhtml": "*",
+    "gulp-rename": "*",
+    "gulp-sourcemaps": "^1.5.1",
+    "gulp-streamify": "*",
+    "gulp-uglify": "*",
+    "gulp-util": "*",
+    "gulp-watch": "*",
+    "tiny-lr": "*",
+    "vinyl-paths": "*",
+    "vinyl-source-stream": "*",
+    "watchify": "*",
+    "gulp-open": "~0.3.2",
+    "gulp-jscs": "~1.6.0",
+    "jscs": "*",
+    "gulp-gh-pages": "~0.5.1",
+    "gulp-bump": "~0.3.0",
+    "gulp-tag-version": "~1.2.1",
+    "gulp-filter": "~2.0.2"
+  },
+  "scripts": {
+    "post-install": "node ./node_modules/bower/bin/bower install",
+    "start": "node ./node_modules/gulp/bin/gulp.js",
+    "build": "node ./node_modules/gulp/bin/gulp.js build",
+    "test": "gulp build"
+  },
+  "gulp": {
+    "less": "src/less/*.less",
+    "libjs": [
+      "./bower_components/anchor-js/anchor.js",
+      "./bower_components/jquery/dist/jquery.js",
+      "./bower_components/bootstrap/dist/js/bootstrap.js"
+    ],
+    "libcss": [
+      "./bower_components/bootstrap/dist/css/bootstrap.css",
+      "./bower_components/font-awesome/css/font-awesome.css"
+    ],
+    "fonts": [
+      "./bower_components/font-awesome/fonts/*"
+    ],
+    "jade": [
+      "src/jade/**/*.jade"
+    ],
+    "js": [
+      "src/js/**/*.js"
+    ],
+    "entry": "./src/js/main.js",
+    "dist": "./dist/"
+  }
+}
