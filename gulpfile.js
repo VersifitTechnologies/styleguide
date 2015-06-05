@@ -25,7 +25,6 @@ var ghPages = require('gulp-gh-pages');
 var bump = require('gulp-bump');
 var tagVersion = require('gulp-tag-version');
 var filter = require('gulp-filter');
-var execSync = require('child_process').execSync;
 
 var fs = require('fs');
 
